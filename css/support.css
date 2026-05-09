@@ -130,8 +130,9 @@ h3 a:hover {
 
 /* ── Cover outline ── */
 .book-link {
-  display: inline-block;
   position: relative;
+  display: inline-block;
+  max-width: 100%;
 }
 .booksection .view {
   top: 0;
