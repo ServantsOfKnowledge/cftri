@@ -313,17 +313,19 @@
     <script id="booktpl" type="text/template">
         {{#books}}
          <div class="span4 booksection year{{year}}">
-          <a class="book-link" href="{{url}}" data-identifier="{{identifier}}">
-           <div class="view"> Read </div>
-
-           <div title="{{ title }}" class="cover" data-cover="{{cover}}">
+           <a class="book-link" href="{{url}}" data-identifier="{{identifier}}">
+            <div class="view"> Read </div>
+            <div title="{{ title }}" class="cover" data-cover="{{cover}}">
+            </div>
+           </a>
+           <div class="book-meta">
+            <h2 title="{{ title }}"><a href="{{url}}">{{title}}</a></h2>
+            <h3><a href="{{authorUrl}}" target="_blank">{{author}}</a></h3>
+            <p class="subject">{{_subject}}</p>
+            <p class="level">{{level}}</p>
+            <p class="description">{{info}}</p>
            </div>
-           <h2 title="{{ title }}">{{title}}</h2>
-          </a>
-          <h3><a href="{{authorUrl}}" target="_blank">{{author}}</a></h3>
-          <p class="level">{{level}}</p>
-          <p class="description">{{info}}</p>
-        </div>
+         </div>
         {{/books}}
     </script>
 
