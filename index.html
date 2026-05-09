@@ -147,27 +147,23 @@
       return (Math.round(Math.random())-0.5);
     }
 
-    function loadCover($el) {
-        var url = $el.data('cover');
-        if (url) $el.css('background-image', 'url(' + url + ')');
+    function loadCover(el) {
+        var url = $(el).data('cover');
+        if (url) el.style.backgroundImage = 'url(' + url + ')';
     }
 
+    var coverObserver = 'IntersectionObserver' in window ? new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+            if (e.isIntersecting) { loadCover(e.target); coverObserver.unobserve(e.target); }
+        });
+    }) : null;
+
     function lazyLoadCovers(container) {
-        if ('IntersectionObserver' in window) {
-            var obs = new IntersectionObserver(function(entries) {
-                entries.forEach(function(e) {
-                    if (e.isIntersecting) {
-                        loadCover($(e.target));
-                        obs.unobserve(e.target);
-                    }
-                });
-            });
-            container.find('.booksection .cover').each(function() { obs.observe(this); });
-        } else {
-            container.find('.booksection .cover').each(function() {
-                loadCover($(this));
-            });
-        }
+        var covers = container.find ? container.find('.cover') : $(container).find('.cover');
+        covers.each(function() {
+            if (coverObserver) coverObserver.observe(this);
+            else loadCover(this);
+        });
     }
 
     function getFilteredBooks() {
