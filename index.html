@@ -147,27 +147,9 @@
       return (Math.round(Math.random())-0.5);
     }
 
-    var FALLBACK = 'https://ia801906.us.archive.org/0/items/ServantsOfKnowledge/ServantsOfKnowledge_itemimage.jpg';
-
     function loadCover($el) {
         var url = $el.data('cover');
-        if (!url) {
-            $el.css({ 'background-image': 'url(' + FALLBACK + ')', 'filter': 'grayscale(1) brightness(1.5)' });
-            return;
-        }
-        var img = new Image(),
-            fallbackTimer = setTimeout(function() {
-                $el.css({ 'background-image': 'url(' + FALLBACK + ')', 'filter': 'grayscale(1) brightness(1.5)' });
-            }, 300);
-        img.onload = function() {
-            clearTimeout(fallbackTimer);
-            $el.css({ 'background-image': 'url(' + url + ')', 'filter': 'none' });
-        };
-        img.onerror = function() {
-            clearTimeout(fallbackTimer);
-            $el.css({ 'background-image': 'url(' + FALLBACK + ')', 'filter': 'grayscale(1) brightness(1.5)' });
-        };
-        img.src = url;
+        if (url) $el.css('background-image', 'url(' + url + ')');
     }
 
     function lazyLoadCovers(container) {
@@ -180,9 +162,9 @@
                     }
                 });
             });
-            container.find('.booksection #cover').each(function() { obs.observe(this); });
+            container.find('.booksection .cover').each(function() { obs.observe(this); });
         } else {
-            container.find('.booksection #cover').each(function() {
+            container.find('.booksection .cover').each(function() {
                 loadCover($(this));
             });
         }
@@ -338,7 +320,7 @@
           <a class="book-link" href="{{url}}" data-identifier="{{identifier}}">
            <div class="view"> Read </div>
 
-           <div title="{{ title }}" id="cover" data-cover="{{cover}}">
+           <div title="{{ title }}" class="cover" data-cover="{{cover}}">
            </div>
            <h2 title="{{ title }}">{{title}}</h2>
           </a>

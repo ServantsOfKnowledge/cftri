@@ -4,7 +4,7 @@
 body {
   background-color: #f8f9fa !important;
   color: #333 !important;
-  padding-top: 80px !important;
+  padding-top: 68px !important;
 }
 
 /* ── Navbar ── */
@@ -12,63 +12,77 @@ body {
   overflow: visible;
   height: auto;
   display: flex;
-  justify-content: center;
   align-items: center;
-  background: #fff !important;
-  border-bottom: 2px solid #e9ecef;
-  padding: 8px 0;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  background: #4a5568 !important;
+  border-bottom: none;
+  padding: 0 30px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
 }
 
 .nav-center {
   display: flex;
   align-items: center;
-  gap: 20px;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.nav-left, .nav-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
 .sok-brand {
   display: flex;
   align-items: center;
-  gap: 12px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  padding: 6px 18px 6px 12px;
+  gap: 10px;
+  padding: 4px 14px 4px 4px;
   border-radius: 30px;
   text-decoration: none;
-  transition: transform 0.2s;
+  transition: background 0.2s;
 }
 .sok-brand:hover {
-  transform: scale(1.03);
+  background: rgba(255,255,255,0.1);
 }
 
 .sok-logo-img {
-  height: 36px;
+  height: 34px;
   width: auto;
   border-radius: 50%;
-  border: 2px solid rgba(255,255,255,0.5);
+  border: 2px solid rgba(255,255,255,0.6);
 }
 
 .sok-name {
   font-family: 'Open Sans Condensed', sans-serif;
-  font-size: 20px;
+  font-size: 18px;
   color: #fff !important;
   white-space: nowrap;
   letter-spacing: 0.5px;
 }
 
-.nav-divider {
-  width: 1px;
-  height: 35px;
-  background: #dee2e6;
-}
-
 .partner-brand {
   display: flex;
   align-items: center;
+  gap: 10px;
+  text-decoration: none;
 }
 
 .partner-logo-img {
-  height: 40px;
+  height: 38px;
   width: auto;
+  background: #fff;
+  border-radius: 6px;
+  padding: 4px 8px;
+}
+
+.partner-name {
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 20px;
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.5px;
 }
 
 .clear {
@@ -115,9 +129,12 @@ h3 a:hover {
 }
 
 /* ── Cover outline ── */
-.booksection #cover {
+.booksection .cover {
   outline: 3px solid #e2e8f0 !important;
   border-radius: 4px;
+  background: #e2e8f0 no-repeat center !important;
+  background-size: cover !important;
+}
 }
 
 /* ── Infos toggle ── */
@@ -184,6 +201,87 @@ h3 a:hover {
   cursor: pointer;
 }
 
+/* ── Book Count ── */
+.book-count {
+  font-size: 13px;
+  color: #718096;
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+/* ── View Toggle ── */
+.view-toggle {
+  display: flex;
+  gap: 4px;
+}
+.view-btn {
+  background: #e2e8f0;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  color: #718096;
+  transition: all 0.15s;
+}
+.view-btn.active {
+  background: #667eea;
+  color: #fff;
+}
+.view-btn:hover:not(.active) {
+  background: #cbd5e0;
+}
+
+/* ── List View ── */
+#issueswrap.view-list .booksection {
+  width: 100% !important;
+  margin-left: 0 !important;
+  display: flex !important;
+  align-items: center;
+  gap: 20px;
+  padding: 16px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  margin-bottom: 12px;
+  float: none;
+}
+#issueswrap.view-list .booksection .cover {
+  width: 80px !important;
+  height: 104px !important;
+  flex-shrink: 0;
+  margin: 0;
+  outline: 2px solid #e2e8f0 !important;
+}
+#issueswrap.view-list .booksection .view {
+  width: 80px !important;
+  height: 104px !important;
+  line-height: 104px !important;
+  font-size: 13px !important;
+}
+#issueswrap.view-list .booksection h2 {
+  font-size: 16px;
+  margin: 0 0 4px;
+  white-space: normal;
+}
+#issueswrap.view-list .booksection h3 {
+  margin: 0 0 2px;
+}
+#issueswrap.view-list .booksection p.description {
+  margin: 4px 0 0;
+  height: auto;
+}
+#issueswrap.view-list .booksection p.level {
+  margin: 0;
+}
+
+/* ── Load Sentinel ── */
+#loadSentinel {
+  width: 100%;
+  height: 2px;
+}
+
 /* ── Footer ── */
 .footer p, .footer a {
   color: #a0aec0 !important;
@@ -191,25 +289,32 @@ h3 a:hover {
 
 /* ── Links ── */
 a#infos {
-  color: #667eea !important;
+  color: rgba(255,255,255,0.85) !important;
   text-shadow: none !important;
+  font-size: 28px;
+  font-weight: bold;
+  transition: color 0.2s;
 }
 a#infos:hover {
-  color: #5a67d8 !important;
+  color: #fff !important;
+  text-decoration: none;
 }
 
 @media (max-width: 768px) {
+  .navbar.navbar-fixed-top.jshead {
+    padding: 0 15px;
+  }
   .sok-name {
-    font-size: 16px;
+    font-size: 14px;
   }
   .sok-logo-img {
-    height: 30px;
+    height: 28px;
   }
   .partner-logo-img {
-    height: 30px;
+    height: 28px;
   }
-  .nav-divider {
-    height: 25px;
+  .partner-name {
+    font-size: 15px;
   }
   .filter-row {
     flex-direction: column;
@@ -222,22 +327,19 @@ a#infos:hover {
 
 @media (max-width: 480px) {
   .navbar.navbar-fixed-top.jshead {
-    flex-direction: column;
-    gap: 5px;
+    padding: 0 10px;
   }
-  .nav-center {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-  }
-  .sok-name {
-    font-size: 14px;
+  .nav-left .sok-name {
+    display: none;
   }
   .sok-logo-img {
-    height: 24px;
+    height: 26px;
   }
   .partner-logo-img {
     height: 24px;
+  }
+  .partner-name {
+    font-size: 13px;
   }
 }
 
