@@ -131,8 +131,6 @@ h3 a:hover {
 /* ── Cover outline ── */
 .book-link {
   position: relative;
-  display: block;
-  overflow: hidden;
 }
 .booksection .view {
   top: 0;
@@ -146,8 +144,8 @@ h3 a:hover {
   margin-right: 20px;
   outline: 3px solid #e2e8f0;
   border-radius: 4px;
-  object-fit: cover;
-  background: #e2e8f0;
+  background: #e2e8f0 no-repeat center;
+  background-size: cover;
 }
 
 @media (max-width: 480px) {

@@ -147,6 +147,29 @@
       return (Math.round(Math.random())-0.5);
     }
 
+    function loadCover($el) {
+        var url = $el.data('cover');
+        if (url) $el.css('background-image', 'url(' + url + ')');
+    }
+
+    function lazyLoadCovers(container) {
+        if ('IntersectionObserver' in window) {
+            var obs = new IntersectionObserver(function(entries) {
+                entries.forEach(function(e) {
+                    if (e.isIntersecting) {
+                        loadCover($(e.target));
+                        obs.unobserve(e.target);
+                    }
+                });
+            });
+            container.find('.booksection .cover').each(function() { obs.observe(this); });
+        } else {
+            container.find('.booksection .cover').each(function() {
+                loadCover($(this));
+            });
+        }
+    }
+
     function getFilteredBooks() {
         var books = allBooks;
         if (currentYear !== 'any') {
@@ -177,7 +200,9 @@
 
         rendered += chunk.length;
         var html = Mustache.to_html(template, { books: chunk });
-        $wrap.append(html);
+        var $frag = $(html);
+        $wrap.append($frag);
+        lazyLoadCovers($frag);
 
         if (rendered >= books.length) {
             $('#loadSentinel').hide();
@@ -295,7 +320,7 @@
           <a class="book-link" href="{{url}}" data-identifier="{{identifier}}">
            <div class="view"> Read </div>
 
-           <img title="{{ title }}" class="cover" src="{{cover}}" alt="{{title}}" loading="lazy">
+           <div title="{{ title }}" class="cover" data-cover="{{cover}}">
            </div>
            <h2 title="{{ title }}">{{title}}</h2>
           </a>
