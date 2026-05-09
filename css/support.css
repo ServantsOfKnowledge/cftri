@@ -129,16 +129,24 @@ h3 a:hover {
 }
 
 /* ── Cover outline ── */
+.book-link {
+  display: inline-block;
+  position: relative;
+}
+.booksection .view {
+  top: 0;
+  left: 0;
+}
+
 .booksection .cover {
   float: left;
-  position: relative;
   width: 140px;
   height: 184px;
   margin-right: 20px;
-  outline: 3px solid #e2e8f0 !important;
+  outline: 3px solid #e2e8f0;
   border-radius: 4px;
-  background: #e2e8f0 no-repeat center !important;
-  background-size: cover !important;
+  object-fit: cover;
+  background: #e2e8f0;
 }
 
 @media (max-width: 480px) {
